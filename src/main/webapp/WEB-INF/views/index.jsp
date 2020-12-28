@@ -8,10 +8,13 @@
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Accident</title>
 </head>
 <body>
 <div class="container pt-3">
+    <a class="btn btn-primary mb-2" href="<c:url value='/create'/>">Add accident</a>
     <table class="table">
         <thead>
         <tr>
@@ -19,6 +22,7 @@
             <th scope="col">name</th>
             <th scope="col">text</th>
             <th scope="col">address</th>
+            <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
@@ -35,6 +39,11 @@
                 </td>
                 <td>
                     <c:out value="${accident.address}"/>
+                </td>
+                <td>
+                    <a href="<c:url value="/edit?id=${accident.id}"/>">
+                        <i class="fa fa-edit mr-3"></i>
+                    </a>
                 </td>
             </tr>
         </c:forEach>

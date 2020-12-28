@@ -21,4 +21,20 @@ public class AccidentMem {
     public Map<Integer, Accident> findAll() {
         return accidents;
     }
+
+    public void create(Accident accident) {
+        accident.setId(this.accidents.size() + 1);
+        this.accidents.put(accident.getId(), accident);
+    }
+
+    public void update(Accident accident) {
+        Accident current = accidents.get(accident.getId());
+        current.setName(accident.getName());
+        current.setAddress(accident.getAddress());
+        current.setText(accident.getText());
+    }
+
+    public Accident getAccidentById(int id) {
+        return accidents.get(id);
+    }
 }
