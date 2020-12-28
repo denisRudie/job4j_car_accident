@@ -24,6 +24,16 @@
         <input type="text" class="form-control" name="name" id="nameAccident" placeholder="Enter name">
     </div>
     <div class="form-group">
+        <label for="typeSelector">Accident type:</label>
+        <select name="type.id" id="typeSelector">
+            <c:forEach var="type" items="${types}" >
+                <option value="${type.value.id}">
+                    ${type.value.name}
+                </option>
+            </c:forEach>
+        </select>
+    </div>
+    <div class="form-group">
         <label for="descriptionArea">Accident description:</label>
         <textarea class="form-control" name="text" id="descriptionArea" rows="3"></textarea>
     </div>

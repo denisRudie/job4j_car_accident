@@ -26,6 +26,16 @@
                placeholder="Enter name" value="${accident.name}">
     </div>
     <div class="form-group">
+        <label for="typeSelector">Accident type:</label>
+        <select name="type.id" id="typeSelector">
+            <c:forEach var="type" items="${types}" >
+                <option value="${type.value.id}" ${type.value.id == accident.type.id ? 'selected':""}>
+                        ${type.value.name}
+                </option>
+            </c:forEach>
+        </select>
+    </div>
+    <div class="form-group">
         <label for="descriptionArea">Accident description:</label>
         <textarea class="form-control" name="text" id="descriptionArea"
                   rows="3">${accident.text}</textarea>

@@ -19,6 +19,6 @@ public class AccidentService {
     }
 
     public List<Accident> getAllAccidents() {
-        return new ArrayList<>(store.findAll().values());
+        return new ArrayList<>(store.findAllAccidents().values());
     }
 }

@@ -11,30 +11,32 @@ import ru.job4j.accident.repository.AccidentMem;
 
 @Controller
 public class AccidentControl {
-    private final AccidentMem accidents;
+    private final AccidentMem store;
 
-    public AccidentControl(AccidentMem accidents) {
-        this.accidents = accidents;
+    public AccidentControl(AccidentMem store) {
+        this.store = store;
     }
 
     @GetMapping("/create")
-    public String create() {
+    public String create(Model model) {
+        model.addAttribute("types", store.findAllAccidentTypes());
         return "accident/create";
     }
 
     @PostMapping("/save")
     public String save(@ModelAttribute Accident accident) {
         if (accident.getId() != 0) {
-            accidents.update(accident);
+            store.update(accident);
         } else {
-            accidents.create(accident);
+            store.create(accident);
         }
         return "redirect:/";
     }
 
     @GetMapping("/edit")
     public String update(@RequestParam("id") int id, Model model) {
-        Accident current = accidents.getAccidentById(id);
+        model.addAttribute("types", store.findAllAccidentTypes());
+        Accident current = store.getAccidentById(id);
         model.addAttribute("accident", current);
         return "accident/edit";
     }
