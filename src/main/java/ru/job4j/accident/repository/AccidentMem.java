@@ -35,18 +35,12 @@ public class AccidentMem {
 
     public void create(Accident accident) {
         accident.setId(this.accidents.size() + 1);
-        AccidentType type = accident.getType();
-        String typeName = getAccidentTypeById(type.getId()).getName();
-        type.setName(typeName);
         this.accidents.put(accident.getId(), accident);
     }
 
     public void update(Accident accident) {
         Accident current = accidents.get(accident.getId());
-        AccidentType type = accident.getType();
-        String typeName = getAccidentTypeById(type.getId()).getName();
-        type.setName(typeName);
-        current.setType(type);
+        current.setType(accident.getType());
         current.setName(accident.getName());
         current.setAddress(accident.getAddress());
         current.setText(accident.getText());
