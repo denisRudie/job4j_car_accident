@@ -1,5 +1,7 @@
 package ru.job4j.accident.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Accident {
@@ -9,6 +11,7 @@ public class Accident {
     private String text;
     private String address;
     private AccidentType type;
+    private List<Rule> rules = new ArrayList<>();
 
     public static Accident of(int id, String name, String text, String address) {
         Accident accident = new Accident();
@@ -59,16 +62,29 @@ public class Accident {
         this.type = type;
     }
 
+    public List<Rule> getRules() {
+        return rules;
+    }
+
+    public void setRules(List<Rule> rules) {
+        this.rules = rules;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Accident accident = (Accident) o;
-        return id == accident.id;
+        return id == accident.id &&
+                Objects.equals(name, accident.name) &&
+                Objects.equals(text, accident.text) &&
+                Objects.equals(address, accident.address) &&
+                Objects.equals(type, accident.type) &&
+                Objects.equals(rules, accident.rules);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(id, name, text, address, type, rules);
     }
 }

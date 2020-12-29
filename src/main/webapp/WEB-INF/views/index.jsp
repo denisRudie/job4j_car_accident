@@ -21,7 +21,8 @@
             <th scope="col">id</th>
             <th scope="col">name</th>
             <th scope="col">type</th>
-            <th scope="col">text</th>
+            <th scope="col">rules</th>
+            <th scope="col">description</th>
             <th scope="col">address</th>
             <th scope="col"></th>
         </tr>
@@ -37,6 +38,13 @@
                 </td>
                 <td>
                     <c:out value="${accident.type.name}"/>
+                </td>
+                <td>
+                    <c:forEach items="${accident.rules}" var="rule">
+                        <p>
+                            <c:out value="${rule.name}"/>
+                        </p>
+                    </c:forEach>
                 </td>
                 <td>
                     <c:out value="${accident.text}"/>

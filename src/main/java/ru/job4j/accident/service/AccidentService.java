@@ -28,6 +28,11 @@ public class AccidentService {
         String typeName = store.getAccidentTypeById(type.getId()).getName();
         type.setName(typeName);
         accident.setType(type);
+
+        accident.getRules().forEach(rule -> rule.setName(
+                store.getRuleById(rule.getId())
+                        .getName()));
+
         if (id != 0) {
             store.update(accident);
         } else {

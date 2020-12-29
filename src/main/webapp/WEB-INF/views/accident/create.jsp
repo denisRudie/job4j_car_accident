@@ -34,6 +34,14 @@
         </select>
     </div>
     <div class="form-group">
+        <label for="articleSelect">Select article</label>
+        <select class="form-control" name="rIds" id="articleSelect" multiple>
+            <c:forEach var="rule" items="${rules}">
+                <option value="${rule.id}">${rule.name}</option>
+            </c:forEach>
+        </select>
+    </div>
+    <div class="form-group">
         <label for="descriptionArea">Accident description:</label>
         <textarea class="form-control" name="text" id="descriptionArea" rows="3"></textarea>
     </div>
