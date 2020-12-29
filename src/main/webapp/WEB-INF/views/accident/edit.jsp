@@ -29,8 +29,8 @@
         <label for="typeSelector">Accident type:</label>
         <select name="type.id" id="typeSelector">
             <c:forEach var="type" items="${types}" >
-                <option value="${type.value.id}" ${type.value.id == accident.type.id ? 'selected':""}>
-                        ${type.value.name}
+                <option value="${type.id}" ${type.id == accident.type.id ? 'selected':""}>
+                        ${type.name}
                 </option>
             </c:forEach>
         </select>

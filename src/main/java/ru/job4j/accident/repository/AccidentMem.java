@@ -4,7 +4,9 @@ import org.springframework.stereotype.Repository;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -23,12 +25,12 @@ public class AccidentMem {
         accidentTypes.put(3, AccidentType.of(3, "Машина и велосипед"));
     }
 
-    public Map<Integer, Accident> findAllAccidents() {
-        return accidents;
+    public List<Accident> findAllAccidents() {
+        return new ArrayList<>(accidents.values());
     }
 
-    public Map<Integer, AccidentType> findAllAccidentTypes() {
-        return accidentTypes;
+    public List<AccidentType> findAllAccidentTypes() {
+        return new ArrayList<>(accidentTypes.values());
     }
 
     public void create(Accident accident) {
