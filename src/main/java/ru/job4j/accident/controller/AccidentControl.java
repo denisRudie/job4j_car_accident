@@ -7,13 +7,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.job4j.accident.model.Accident;
-import ru.job4j.accident.model.Rule;
 import ru.job4j.accident.service.AccidentService;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 @Controller
 public class AccidentControl {
@@ -32,13 +28,8 @@ public class AccidentControl {
 
     @PostMapping("/save")
     public String save(@ModelAttribute Accident accident, HttpServletRequest req) {
-        List<Rule> rules = new ArrayList<>();
         String[] rulesFromUI = req.getParameterValues("rIds");
-        Arrays.stream(rulesFromUI)
-                .forEach(r -> rules.add(Rule.of(
-                        Integer.parseInt(r), "")));
-        accident.setRules(rules);
-        service.saveAccident(accident);
+        service.saveAccident(accident, rulesFromUI);
         return "redirect:/";
     }
 

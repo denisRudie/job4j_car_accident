@@ -7,6 +7,8 @@ import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
 import ru.job4j.accident.repository.AccidentMem;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -35,8 +37,13 @@ public class AccidentService {
         return store.getAccidentById(id);
     }
 
-    public void saveAccident(Accident accident) {
-        int id = accident.getId();
+    public void saveAccident(Accident accident, String[] rulesFromUI) {
+        List<Rule> rules = new ArrayList<>();
+        Arrays.stream(rulesFromUI)
+                .forEach(r -> rules.add(Rule.of(
+                        Integer.parseInt(r), "")));
+        accident.setRules(rules);
+
         AccidentType type = accident.getType();
         String typeName = store.getAccidentTypeById(type.getId()).getName();
         type.setName(typeName);
@@ -46,6 +53,7 @@ public class AccidentService {
                 store.getRuleById(rule.getId())
                         .getName()));
 
+        int id = accident.getId();
         if (id != 0) {
             store.update(accident);
         } else {
