@@ -28,9 +28,19 @@
     <div class="form-group">
         <label for="typeSelector">Accident type:</label>
         <select name="type.id" id="typeSelector">
-            <c:forEach var="type" items="${types}" >
+            <c:forEach var="type" items="${types}">
                 <option value="${type.id}" ${type.id == accident.type.id ? 'selected':""}>
                         ${type.name}
+                </option>
+            </c:forEach>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="articleSelect">Select article</label>
+        <select class="form-control" name="rIds" id="articleSelect" multiple>
+            <c:forEach var="rule" items="${rules}">
+                <option value="${rule.id}"${accident.rules.contains(rule) ? 'selected':""}>
+                        ${rule.name}
                 </option>
             </c:forEach>
         </select>

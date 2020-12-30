@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.Rule;
-import ru.job4j.accident.repository.AccidentMem;
 import ru.job4j.accident.service.AccidentService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,17 +18,15 @@ import java.util.List;
 @Controller
 public class AccidentControl {
     private final AccidentService service;
-    private final AccidentMem store;
 
-    public AccidentControl(AccidentService service, AccidentMem store) {
+    public AccidentControl(AccidentService service) {
         this.service = service;
-        this.store = store;
     }
 
     @GetMapping("/create")
     public String create(Model model) {
-        model.addAttribute("types", store.findAllAccidentTypes());
-        model.addAttribute("rules", store.findAllRules());
+        model.addAttribute("types", service.getAllAccidentType());
+        model.addAttribute("rules", service.getAllRules());
         return "accident/create";
     }
 
@@ -47,8 +44,9 @@ public class AccidentControl {
 
     @GetMapping("/edit")
     public String update(@RequestParam("id") int id, Model model) {
-        model.addAttribute("types", store.findAllAccidentTypes());
-        Accident current = store.getAccidentById(id);
+        model.addAttribute("types", service.getAllAccidentType());
+        model.addAttribute("rules", service.getAllRules());
+        Accident current = service.getAccidentById(id);
         model.addAttribute("accident", current);
         return "accident/edit";
     }

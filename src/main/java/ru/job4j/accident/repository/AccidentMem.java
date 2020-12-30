@@ -53,6 +53,7 @@ public class AccidentMem {
         current.setName(accident.getName());
         current.setAddress(accident.getAddress());
         current.setText(accident.getText());
+        current.setRules(accident.getRules());
     }
 
     public Accident getAccidentById(int id) {
