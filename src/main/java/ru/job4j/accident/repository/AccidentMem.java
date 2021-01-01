@@ -1,6 +1,5 @@
 package ru.job4j.accident.repository;
 
-import org.springframework.stereotype.Repository;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
@@ -10,8 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Repository
-public class AccidentMem {
+//@Repository
+public class AccidentMem implements Store {
 
     private final Map<Integer, Accident> accidents = new HashMap<>();
     private final Map<Integer, AccidentType> accidentTypes = new HashMap<>();
