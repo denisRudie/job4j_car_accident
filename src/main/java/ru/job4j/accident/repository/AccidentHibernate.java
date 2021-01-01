@@ -40,12 +40,6 @@ public class AccidentHibernate implements Store {
 
     @Override
     public List<Accident> findAllAccidents() {
-//        try (Session session = sf.openSession()) {
-//            return session.createQuery("select distinct a from Accident a " +
-//                    "join fetch a.type " +
-//                    "join fetch a.rules")
-//                    .list();
-//        }
         return tx(session -> session.createQuery("select distinct a from Accident a " +
                 "join fetch a.type " +
                 "join fetch a.rules")
@@ -69,9 +63,6 @@ public class AccidentHibernate implements Store {
 
     @Override
     public void create(Accident accident) {
-//        try (Session session = sf.openSession()) {
-//            session.save(accident);
-//        }
         consume(session -> session.save(accident));
     }
 
@@ -82,7 +73,12 @@ public class AccidentHibernate implements Store {
 
     @Override
     public Accident getAccidentById(int id) {
-        return tx(session -> session.get(Accident.class, id));
+        return tx(session -> (Accident) session
+                .createQuery("select distinct a from Accident a " +
+                        "left join fetch a.rules " +
+                        "where a.id=:x ")
+                .setParameter("x", id)
+                .uniqueResult());
     }
 
     @Override
