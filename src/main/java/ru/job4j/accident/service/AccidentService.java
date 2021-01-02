@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
-import ru.job4j.accident.repository.AccidentHibernate;
+import ru.job4j.accident.repository.AccidentJdbcTemplate;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,10 +14,10 @@ import java.util.List;
 @Service
 public class AccidentService {
 
-    private final AccidentHibernate store;
+    private final AccidentJdbcTemplate store;
 
     @Autowired
-    public AccidentService(AccidentHibernate store) {
+    public AccidentService(AccidentJdbcTemplate store) {
         this.store = store;
     }
 
