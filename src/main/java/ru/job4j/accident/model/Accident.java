@@ -15,10 +15,10 @@ public class Accident {
     private String name;
     private String text;
     private String address;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "type_id")
     private AccidentType type;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Rule> rules = new ArrayList<>();
 
     public static Accident of(int id, String name, String text, String address) {
