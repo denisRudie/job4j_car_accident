@@ -14,6 +14,9 @@
 </head>
 <body>
 <div class="container pt-3">
+    <div>
+        Login as : ${user.username}
+    </div>
     <a class="btn btn-primary mb-2" href="<c:url value='/create'/>">Add accident</a>
     <table class="table">
         <thead>
