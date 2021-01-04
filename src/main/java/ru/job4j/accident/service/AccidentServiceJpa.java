@@ -27,9 +27,7 @@ public class AccidentServiceJpa implements AccidentServiceInterface {
 
     @Override
     public List<Accident> getAllAccidents() {
-        List<Accident> accidents = new ArrayList<>();
-        accidentRepository.findAll().forEach(accidents::add);
-        return accidents;
+        return new ArrayList<>(accidentRepository.getAllAccidents());
     }
 
     @Override
@@ -48,7 +46,7 @@ public class AccidentServiceJpa implements AccidentServiceInterface {
 
     @Override
     public Accident getAccidentById(int id) {
-        return accidentRepository.findById(id).orElse(null);
+        return accidentRepository.getAccidentById(id);
     }
 
     @Override
