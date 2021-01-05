@@ -18,6 +18,10 @@
           crossorigin="anonymous">
 </head>
 <body class="container pt-3">
+<div style="background-color: bisque">
+    Login as : ${user.username}
+</div>
+<br/>
 <form action="<c:url value='/save'/>" method='POST'>
     <div class="form-group">
         <label for="nameAccident">Accident name:</label>
