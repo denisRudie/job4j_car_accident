@@ -16,6 +16,10 @@
 <div class="container pt-3">
     <div style="background-color: bisque">
         Login as : ${user.username}
+        <a href="<c:url value="/logout"/>"> logout </a>
+    </div>
+    <div class="navBarCell1Rev">
+        <a href="<c:url value="/"/>">Main page</a>
     </div>
     <br/>
     <a class="btn btn-primary mb-2" href="<c:url value='/create'/>">Add accident</a>
